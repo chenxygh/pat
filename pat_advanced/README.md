@@ -3,5 +3,5 @@
 > 刷题, pat_advanced <br>
 
 * [Introduction](README.md)
-	* [1001_害死人不偿命的(3n+1)猜想](1001_害死人不偿命的(3n+1)猜想.md)
-	* [1002_写出这个数](1002_写出这个数.md)
+	* [1001 A+B Format](1001 A+B Format.md)
+	* [1002 A+B for Polynomials](1002 A+B for Polynomials.md)

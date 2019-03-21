@@ -2,7 +2,7 @@
 * @Author: cxy
 * @Date:   2019-02-25 20:53:17
 * @Last Modified by:   cxy
-* @Last Modified time: 2019-03-21 21:53:52
+* @Last Modified time: 2019-03-21 22:52:14
 */
 #include <stdio.h>
 #include <string.h>
@@ -11,12 +11,12 @@ int a;
 
 int main(int argc, char const *argv[])
 {
-	const char marsColor[][2] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C"};
-	char res[8] = {};
-	res[0] = '#';
-	int decimalColor = 56;
-	strcat(res, marsColor[decimalColor / 13]);
-	printf("%s\n", res);
+	char str[10] = {};
+	char str2[10] = {};
+	int a = 0;
+	scanf("%*s%s", str, str2);
+	printf("%*s;1212\n", 10, " ");
+	printf("%*d%*.*s%s\n", 10, a, 10, 2, str, str2);
 
 	return 0;
 }

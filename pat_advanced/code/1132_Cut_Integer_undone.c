@@ -2,7 +2,7 @@
 * @Author: cxy
 * @Date:   2019-03-21 23:44:11
 * @Last Modified by:   cxy
-* @Last Modified time: 2019-03-22 13:48:57
+* @Last Modified time: 2019-03-22 13:53:34
 */
 
 #include <stdio.h>
@@ -23,13 +23,13 @@ int main(int argc, char const *argv[])
 		char strNum[11] = {};
 		sprintf(strNum, "%d", num);
 		int length = strlen(strNum);
-		
+
 		double division = pow(10.0, (double)length / 2);
 
 		// test
-		res[resLen++] = (num % ((num / (int)(division + 0.5)) * (num % (int)(division + 0.5))));
+		res[resLen++] = (int)(num % ((num / (int)(division + 0.5)) * (num % (int)(division + 0.5))));
 		// printf("%d\n", (int)(division));
-		// printf("%d\n", (num % ((num / (int)division) * (num % (int)division))));
+		// printf("%d\n", (int)(num % ((num / (int)(division + 0.5)) * (num % (int)(division + 0.5)))));
 		// exit(0);
 	}
 	for (int i = 0; i < resLen; ++i)

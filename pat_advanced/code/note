@@ -1,0 +1,2 @@
+realloc 必须是在 malloc 或者 calloc 或者 realloc 的前提下使用
+就是说，realloc(point, size), point 必须来自 malloc 或者 calloc 或者 realloc，数组也不行！

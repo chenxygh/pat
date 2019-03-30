@@ -2,7 +2,7 @@
 * @Author: cxy
 * @Date:   2019-02-25 20:53:17
 * @Last Modified by:   cxy
-* @Last Modified time: 2019-03-30 21:23:02
+* @Last Modified time: 2019-03-30 21:29:16
 */
 #include <stdio.h>
 #include <memory.h>
@@ -27,18 +27,20 @@ int main(int argc, char const *argv[])
 	 * 总之，记住，按字节重置
 	 */
 	MSS thisSum = {1, 2, 3, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}};
-	printf("%d\n", thisSum.start);
-	printf("%d\n", thisSum.end);
-	printf("%d\n", thisSum.sum);
-	for (int i = 0; i < 10; ++i) printf("%d\n", thisSum.str[i]);
+	MSS maxSum = {0, 0, 0, {0}};
+	printf("%d\t%d\n", thisSum.start, maxSum.start);
+	printf("%d\t%d\n", thisSum.end, maxSum.end);
+	printf("%d\t%d\n", thisSum.sum, maxSum.sum);
+	for (int i = 0; i < 10; ++i) printf("%d\t%d\n", thisSum.str[i], maxSum.str[i]);
 
 	printf("\n");
 
+	maxSum = thisSum;
 	memset(&thisSum, 0, sizeof(MSS));
-	printf("%d\n", thisSum.start);
-	printf("%d\n", thisSum.end);
-	printf("%d\n", thisSum.sum);
-	for (int i = 0; i < 10; ++i) printf("%d\n", thisSum.str[i]);
+	printf("%d\t%d\n", thisSum.start, maxSum.start);
+	printf("%d\t%d\n", thisSum.end, maxSum.end);
+	printf("%d\t%d\n", thisSum.sum, maxSum.sum);
+	for (int i = 0; i < 10; ++i) printf("%d\t%d\n", thisSum.str[i], maxSum.str[i]);
 
 	return 0;
 }

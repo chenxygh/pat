@@ -2,55 +2,33 @@
 * @Author: cxy
 * @Date:   2019-02-25 20:53:17
 * @Last Modified by:   cxy
-* @Last Modified time: 2019-03-29 23:55:19
+* @Last Modified time: 2019-03-30 21:19:20
 */
 #include <stdio.h>
-#include <stdlib.h>
+#include <memory.h>
 
-typedef struct LNode {
-    char val;
-    struct LNode *next;
-    struct LNode *pre;
-} LNode;
-
-bool isValid(char* s) {
-    struct LNode *head = (struct LNode *)malloc(sizeof(struct LNode));
-    head->next = NULL;
-    head->pre = NULL;
-    head->val = -1;
-    struct LNode *top = head;
-    
-    while (s[0] != '\0') {
-        if (s[0] == '(' || s[0] == '{' || s[0] == '[') {
-            // push
-            struct LNode *temp = (struct LNode *)malloc(sizeof(struct LNode));
-            temp->val = s[0];
-            temp->next = NULL;
-            temp->pre = top;
-            top->next = temp;
-            top = temp;
-            ++s;
-            continue;
-        }
-        
-        char right = top->val == '('? ')': top->val == '{'? '}': ']';
-        if (right != s[0]) return false;
-        
-        // pop
-        struct LNode *temp = top;
-        top = top->pre;
-        top->next = NULL;
-        free(temp);
-        ++s;
-    }
-    
-    return top == head;
-}
+typedef struct {
+  int start = 0;
+  int end = 0;
+  int sum = 0;
+  char str[10];
+} MSS;
 
 int main(int argc, char const *argv[])
 {
-	char s[] = "()[]{";
-	printf("%d\n", isValid(s));
+	MSS thisSum = {1, 2, 3, {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}};
+	printf("%d\n", thisSum.start);
+	printf("%d\n", thisSum.end);
+	printf("%d\n", thisSum.sum);
+	for (int i = 0; i < 10; ++i) printf("%d\n", thisSum.str[i]);
+
+	printf("\n");
+
+	memset(&thisSum, 0, sizeof(MSS));
+	printf("%d\n", thisSum.start);
+	printf("%d\n", thisSum.end);
+	printf("%d\n", thisSum.sum);
+	for (int i = 0; i < 10; ++i) printf("%d\n", thisSum.str[i]);
 
 	return 0;
 }

@@ -2,16 +2,17 @@
 * @Author: cxy
 * @Date:   2019-04-08 22:41:40
 * @Last Modified by:   cxy
-* @Last Modified time: 2019-04-08 23:10:32
+* @Last Modified time: 2019-04-09 14:36:24
 */
 
 #include <stdio.h>
+#include <string.h>
 
 typedef struct Result {
 	int status;
 	int token;
 	int total;
-}Result;
+} Result;
 
 int main(int argc, char const *argv[])
 {
@@ -20,45 +21,38 @@ int main(int argc, char const *argv[])
 	scanf("%d%d", &total, &cnt);
 
 	Result res[cnt];
-	int length = 0;
-	for (; length < cnt; ++length) {
-		int n1 = 0;
-		int b = 0;
-		int t = 0;
-		int n2 = 0;
+	for (int i = 0; i < cnt; ++i) {
+		int n1, b, t, n2;
 		scanf("%d%d%d%d", &n1, &b, &t, &n2);
-
 		if (!total) {
-			res[length].total = total;
+			res[i].status = -999;
 			continue;
 		}
 		if (t > total) {
-			res[length].status = 0;
-			res[length].total = total;
+			res[i].status = 0;
+			res[i].total = total;
 			continue;
 		}
 
-		int status = b? (n1 > n2? 1: -1): (n1 < n2? 1: -1);
-		total += status * t;
-		res[length].status = status;
-		res[length].token = t;
-		res[length].total = total;
+		int sign = b? (n2 > n1? 1: -1): (n2 < n1? 1: -1);
+		total += sign * t;
+		res[i].status = sign;
+		res[i].token = t;
+		res[i].total = total;
 	}
 
-	int i = 0;
-	for (; i < length && res[i].total; ++i) {
+	for (int i = 0; i < cnt; ++i) {
 		if (res[i].status == 1) {
 			printf("Win %d!  Total = %d.\n", res[i].token, res[i].total);
 		} else if (res[i].status == -1) {
-			printf("Lose %d!  Total = %d.\n", res[i].token, res[i].total);
-		} else {
+			printf("Lose %d.  Total = %d.\n", res[i].token, res[i].total);
+		} else if (res[i].status == 0) {
 			printf("Not enough tokens.  Total = %d.\n", res[i].total);
+		} else if (res[i].status == -999) {
+			printf("Game Over.\n");
+			break;
 		}
 	}
-	if (i < length) {
-		printf("Game Over.");
-		printf("Game Over.");
-	}
-
+	
 	return 0;
 }

@@ -2,7 +2,7 @@
 * @Author: cxy
 * @Date:   2019-04-01 01:01:12
 * @Last Modified by:   cxy
-* @Last Modified time: 2019-04-08 22:48:05
+* @Last Modified time: 2019-04-09 16:57:09
 */
 
 #include <stdio.h>
@@ -18,13 +18,7 @@ int myStrcmp (const char *src, const char *des) {
 
 int main(int argc, char const *argv[])
 {
-	// printf("%d\n", myStrcmp("hello", "helloworld"));
-	// printf("%d\n", myStrcmp("hello", "he"));
-	// printf("%d\n", myStrcmp("hello", "hello"));
-	int a = -1;
-	printf("%d\n", (a = -3) > 0? a += 33: a -= 100);
-
-	printf("%d\n", 2 + (1 < 3));
+	printf("%d\n", 'E' -'N' + 23);
 
 	return 0;
 }

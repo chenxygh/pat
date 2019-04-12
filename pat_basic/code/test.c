@@ -2,7 +2,7 @@
 * @Author: cxy
 * @Date:   2019-04-01 01:01:12
 * @Last Modified by:   cxy
-* @Last Modified time: 2019-04-09 16:57:09
+* @Last Modified time: 2019-04-12 22:29:58
 */
 
 #include <stdio.h>
@@ -18,7 +18,7 @@ int myStrcmp (const char *src, const char *des) {
 
 int main(int argc, char const *argv[])
 {
-	printf("%d\n", 'E' -'N' + 23);
+	printf("%*sss\n", 5, "c");
 
 	return 0;
 }

@@ -1,8 +1,8 @@
 /*
 * @Author: cxy
-* @Date:   2019-05-16 09:22:02
+* @Date:   2019-05-16 09:42:17
 * @Last Modified by:   cxy
-* @Last Modified time: 2019-05-16 10:01:55
+* @Last Modified time: 2019-05-16 10:06:45
 */
 
 #include <stdio.h>
@@ -23,21 +23,30 @@ bool isPrime(int num) {
 
 int main(int argc, char const *argv[])
 {
-	int num = 0;
-	scanf("%d", &num);
+	int left = 0, right = 0;
+	scanf("%d%d", &left, &right);
 
+	bool canPrint = false;
 	int cnt = 0;
-	int pre = 2;
-	for (int i = 3; i <= num; i += 2) {
+	int row = 0;
+	for (int i = 2; cnt < right; ++i) {
 		if (isPrime(i)) {
-			if (i - pre == 2) {
-				++cnt;
+			++cnt;
+			if (!canPrint && cnt >= left) {
+				canPrint = true;
 			}
-			pre = i;
+
+			if (canPrint) {
+				++row;
+				if (row == 10 || cnt == right) {
+					row = 0;
+					printf("%d\n", i);
+				} else {
+					printf("%d ", i);
+				}
+			}
 		}
 	}
-
-	printf("%d\n", cnt);
 
 	return 0;
 }

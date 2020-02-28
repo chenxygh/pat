@@ -1,16 +1,10 @@
-#include <stdio.h>
-
-int main(int argc, char const *argv[])
-{
-	int dict[151] = {0};
-	int n = 0;
-	scanf("%d", &n);
-	printf("%d\n", 10);
-	// while (n--) {
-	// 	int num = 0;
-	// 	scanf("%d", &num);
-	// 	printf("--: %d\n", num);
-	// }
-
-	return 0;
+#include<stdio.h>
+int main(void) 
+{ 
+    int a,b,c; 
+ 
+    printf("请输入三个数字：");
+    scanf("%d%d%d",&a,&b,&c); 
+    printf("%d,%d,%d\n",a,b,c);
+    return 0; 
 }

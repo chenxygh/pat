@@ -1,10 +1,3 @@
-/*
-* @Author: cxy
-* @Date:   2019-04-01 22:14:14
-* @Last Modified by:   cxy
-* @Last Modified time: 2019-04-01 22:45:03
-*/
-
 #include <stdio.h>
 
 typedef struct Node {
@@ -13,47 +6,45 @@ typedef struct Node {
 	int Next;
 } Node;
 
-void swap (Node *a, Node *b) {
-	Node temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
 int main(int argc, char const *argv[])
 {
-	int start = 0;
-	int cnt = 0;
-	int reverseCnt = 0;
-	scanf("%d%d%d", &start, &cnt, &reverseCnt);
+	int s_addr = 0, n = 0, k = 0;
+	scanf("%d%d%d", &s_addr, &n, &k);
+	if (n <= 0) return 0;
+	Node stack[n];
+	Node nodes[n];
 
-	// TODO: 获取链表
-	Node list[cnt];
-	for (int i = 0; i < cnt; ++i) {
-		scanf("%d%d%d", &(list[i].Address), &(list[i].Data), &(list[i].Next));
+	for (int i = 0; i < n; ++i) {
+		scanf("%d%d%d", &(stack[i].Address), &(stack[i].Data), &(stack[i].Next));
 	}
 
-	// TODO: 整理链表
+	int length = k;
+	int cnt = k - 1;
+	for (int i = 0, find_addr = s_addr; i < n - 1; ++i) {
+		int j = i;
+		while (stack[j].Address != find_addr) ++j;
+		if ((i + k))
+		nodes[cnt] = stack[j];
+	}
+
 	int i = 0;
-	for (; list[i].Address != start && i < cnt; ++i);
-	swap(list + i, list);
-	for (int i = 0; i < cnt - 1; ++i) {
-		int j = i + 1;
-		for (; list[j].Address != list[i].Next && j < cnt; ++j);
-		if (j == i + 1) continue;
-		swap(list + j, list + i + 1);
+	for (; i + k - 1 < n; i += k) {
+		int j = i;
+		for (int w = i + k - 1; j < w; ++j, --w) {
+			Node temp = nodes[j];
+			nodes[j] = nodes[w];
+			nodes[w] = temp;
+			if (j > i) {nodes[j - 1].Next = nodes[j].Address;}
+		}
+		while (j < i + k) {nodes[j - 1].Next = nodes[j].Address; ++j;}
 	}
+	while (i < n) {nodes[i - 1].Next = nodes[i].Address; ++i;}
+	nodes[n - 1].Next = -1;
 
-	// TODO: 排序链表
-	for (int i = 0, j = reverseCnt - 1; i < j; ++i, --j) swap(list + i, list + j);
-	reverseCnt = reverseCnt == cnt? reverseCnt - 1: reverseCnt;
-	for (int i = 0; i < reverseCnt; ++i) {
-		list[i].Next = list[i + 1].Address;
+	for (int i = 0; i < n - 1; ++i) {
+		printf("%05d %d %05d\n", nodes[i].Address, nodes[i].Data, nodes[i].Next);
 	}
-	list[cnt - 1].Next = -1;
-
-	// TODO: print
-	for (int i = 0; i < cnt - 1; ++i) printf("%05d %d %05d\n", list[i].Address, list[i].Data, list[i].Next);
-	printf("%05d %d %d\n", list[cnt - 1].Address, list[cnt - 1].Data, list[cnt - 1].Next);
+	printf("%05d %d %d\n", nodes[n - 1].Address, nodes[n - 1].Data, nodes[n - 1].Next);
 
 	return 0;
 }
